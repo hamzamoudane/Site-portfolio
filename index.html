@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hamza Moudane – QA Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-deep:   #0f2d6b;
+    --blue-mid:    #1a56db;
+    --blue-sky:    #38bdf8;
+    --blue-light:  #e0f2fe;
+    --blue-pale:   #f0f8ff;
+    --white:       #ffffff;
+    --text:        #0f172a;
+    --text-muted:  #64748b;
+    --border:      #bfdbfe;
+    --border-soft: #dbeafe;
+    --accent:      #0ea5e9;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--white);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 4rem;
+    background: rgba(255,255,255,0.95);
+    border-bottom: 1px solid var(--border-soft);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 1px 12px rgba(15,45,107,0.07);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 1.2rem; color: var(--blue-deep);
+    letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--text-muted); text-decoration: none;
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 500; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--blue-mid); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding: 0 4rem; padding-top: 76px;
+    background: linear-gradient(135deg, #f0f8ff 0%, #e8f4fd 40%, #dbeeff 100%);
+    position: relative; overflow: hidden;
+  }
+  /* decorative circles */
+  #hero::before {
+    content: '';
+    position: absolute; right: -120px; top: -120px;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(56,189,248,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  #hero::after {
+    content: '';
+    position: absolute; left: 30%; bottom: -80px;
+    width: 350px; height: 350px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(26,86,219,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding-right: 3rem; z-index: 1;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--blue-mid); font-weight: 600; margin-bottom: 1.8rem;
+  }
+  .hero-tag-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--blue-sky);
+    box-shadow: 0 0 0 3px rgba(56,189,248,0.25);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{box-shadow:0 0 0 3px rgba(56,189,248,0.25)} 50%{box-shadow:0 0 0 8px rgba(56,189,248,0.08)} }
+
+  h1 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(3rem, 5vw, 5.2rem);
+    line-height: 0.95; letter-spacing: -0.03em;
+    color: var(--blue-deep); margin-bottom: 0.6rem;
+  }
+  .h1-sub {
+    font-family: 'Syne', sans-serif; font-weight: 600;
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    color: var(--blue-mid); letter-spacing: 0.04em;
+    margin-bottom: 1.8rem; display: block;
+  }
+  .hero-desc {
+    font-size: 0.88rem; line-height: 1.85;
+    color: #4a5568; max-width: 44ch; margin-bottom: 2.5rem;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+
+  .btn-primary {
+    background: var(--blue-deep); color: var(--white);
+    padding: 0.9rem 2.2rem; font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; border: none; cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 14px rgba(15,45,107,0.25);
+  }
+  .btn-primary:hover { background: var(--blue-mid); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,86,219,0.35); }
+
+  .btn-outline {
+    background: transparent; color: var(--blue-deep);
+    padding: 0.9rem 2.2rem; font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; border: 2px solid var(--blue-mid); cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-outline:hover { background: var(--blue-light); transform: translateY(-2px); }
+
+  .hero-badges { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .hero-badge {
+    font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--blue-mid); background: rgba(26,86,219,0.08);
+    border: 1px solid rgba(26,86,219,0.2); padding: 0.3rem 0.8rem;
+    border-radius: 3px; font-weight: 500;
+  }
+
+  .hero-right {
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1; animation: fadeUp 1s ease 0.2s both;
+  }
+
+  .hero-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 2.5rem; width: 100%; max-width: 400px;
+    box-shadow: 0 20px 60px rgba(15,45,107,0.12);
+    position: relative; overflow: hidden;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--blue-deep), var(--blue-sky));
+  }
+
+  .card-label {
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--blue-mid); margin-bottom: 1.5rem; font-weight: 600;
+  }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .stat-num {
+    font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800;
+    color: var(--blue-deep); line-height: 1;
+  }
+  .stat-num sup { color: var(--blue-sky); font-size: 1rem; }
+  .stat-label { font-size: 0.6rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem; }
+  .stat-divider { grid-column: span 2; height: 1px; background: var(--border-soft); }
+
+  .logo-strip { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-soft); }
+  .logo-strip-label { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; }
+  .logo-strip-logos { display: flex; align-items: center; gap: 1.8rem; flex-wrap: wrap; }
+  .logo-strip-logos img { height: 28px; width: auto; max-width: 80px; object-fit: contain; filter: saturate(0.7) opacity(0.8); transition: filter 0.2s; }
+  .logo-strip-logos img:hover { filter: saturate(1) opacity(1); }
+  .logo-txt { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.85rem; color: var(--blue-deep); letter-spacing: 0.06em; }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 7rem 4rem; }
+  .section-header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 4rem; }
+  .section-num { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--blue-sky); text-transform: uppercase; font-weight: 600; white-space: nowrap; }
+  .section-line { flex: 1; height: 1px; background: var(--border-soft); }
+  .section-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem, 2.8vw, 2.6rem); letter-spacing: -0.02em; color: var(--blue-deep); }
+
+  /* ─── EXPERIENCE ─── */
+  #experience { background: var(--white); }
+
+  .exp-item {
+    display: grid; grid-template-columns: 220px 1fr;
+    border-top: 1.5px solid var(--border-soft);
+    padding: 3rem 0; gap: 3rem;
+    transition: background 0.2s;
+  }
+  .exp-item:last-child { border-bottom: 1.5px solid var(--border-soft); }
+  .exp-item:hover { background: var(--blue-pale); }
+
+  .exp-meta { display: flex; flex-direction: column; gap: 0.9rem; }
+  .exp-period { font-size: 0.7rem; color: var(--blue-mid); letter-spacing: 0.05em; font-weight: 600; }
+
+  .exp-logo-box {
+    background: var(--white); border: 1.5px solid var(--border);
+    border-radius: 8px; padding: 0.7rem 1rem;
+    display: flex; align-items: center; justify-content: center;
+    width: fit-content; min-width: 90px; height: 54px;
+    box-shadow: 0 2px 8px rgba(15,45,107,0.08);
+  }
+  .exp-logo-box img { max-height: 32px; max-width: 110px; width: auto; object-fit: contain; }
+  .exp-logo-txt { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; color: var(--blue-deep); }
+  .exp-location { font-size: 0.62rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .exp-role { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.8rem; color: var(--blue-deep); }
+  .exp-desc { font-size: 0.8rem; line-height: 1.85; color: #4a5568; margin-bottom: 1.2rem; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.4rem; }
+  .exp-bullets li { font-size: 0.75rem; color: #334155; padding-left: 1.4rem; position: relative; line-height: 1.65; }
+  .exp-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--blue-sky); font-size: 0.7rem; }
+  .exp-techs { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .exp-tech {
+    font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--blue-mid); background: rgba(26,86,219,0.07);
+    border: 1px solid rgba(26,86,219,0.18); padding: 0.25rem 0.6rem; border-radius: 3px;
+  }
+
+  /* ─── SKILLS ─── */
+  #skills { background: var(--blue-pale); }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .skill-cat {
+    background: var(--white); padding: 1.8rem;
+    border: 1.5px solid var(--border-soft); border-radius: 10px;
+    position: relative; overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .skill-cat:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(15,45,107,0.1); }
+  .skill-cat::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue-deep), var(--blue-sky));
+    transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+  }
+  .skill-cat:hover::before { transform: scaleX(1); }
+  .skill-cat-name { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-mid); margin-bottom: 1rem; font-weight: 600; }
+  .skill-items { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .skill-item { font-size: 0.7rem; color: #334155; background: var(--blue-pale); padding: 0.3rem 0.7rem; border: 1px solid var(--border-soft); border-radius: 3px; }
+
+  /* ─── FORMATION ─── */
+  #formation { background: var(--white); }
+  .formation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .formation-item {
+    background: var(--blue-pale); padding: 1.6rem;
+    border-left: 3px solid var(--blue-sky); border-radius: 0 6px 6px 0;
+    margin-bottom: 0.8rem;
+  }
+  .formation-year { font-size: 0.65rem; color: var(--blue-mid); letter-spacing: 0.1em; margin-bottom: 0.6rem; font-weight: 600; }
+  .formation-degree { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 0.3rem; color: var(--blue-deep); }
+  .formation-school { font-size: 0.7rem; color: var(--text-muted); }
+
+  .certif-list { display: flex; flex-direction: column; gap: 0.6rem; }
+  .certif-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1rem 1.2rem; background: var(--blue-pale);
+    border: 1.5px solid var(--border-soft); border-radius: 8px;
+  }
+  .certif-icon {
+    width: 2.2rem; height: 2.2rem; background: rgba(26,86,219,0.1);
+    border: 1px solid rgba(26,86,219,0.2); border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--blue-mid); font-size: 0.8rem; flex-shrink: 0;
+  }
+  .certif-name { font-size: 0.73rem; line-height: 1.5; color: var(--text); }
+  .certif-org { font-size: 0.6rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+  /* ─── PROJETS ─── */
+  #projets { background: var(--blue-pale); }
+  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+  .project-card {
+    background: var(--white); padding: 2rem;
+    border: 1.5px solid var(--border-soft); border-radius: 10px;
+    position: relative; overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .project-card:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(15,45,107,0.1); }
+  .project-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue-deep), var(--blue-sky));
+    transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+  }
+  .project-card:hover::after { transform: scaleX(1); }
+  .project-type { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue-mid); margin-bottom: 0.8rem; font-weight: 600; }
+  .project-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.7rem; color: var(--blue-deep); }
+  .project-desc { font-size: 0.74rem; color: #4a5568; line-height: 1.75; margin-bottom: 1rem; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .project-tag { font-size: 0.6rem; color: var(--text-muted); border: 1px solid var(--border-soft); padding: 0.2rem 0.5rem; border-radius: 3px; background: var(--blue-pale); }
+
+  /* ─── CONTACT ─── */
+  #contact {
+    background: linear-gradient(135deg, var(--blue-deep) 0%, #0c2657 60%, #071d4a 100%);
+    color: #e8f4fd;
+  }
+  #contact .section-title { color: #e8f4fd; }
+  #contact .section-num { color: var(--blue-sky); }
+  #contact .section-line { background: rgba(255,255,255,0.12); }
+
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+  .contact-tagline {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(2rem, 3.5vw, 3.2rem); line-height: 1.1;
+    letter-spacing: -0.02em; margin-bottom: 1.5rem; color: #e8f4fd;
+  }
+  .contact-tagline span { color: var(--blue-sky); }
+  .contact-sub { font-size: 0.8rem; color: #94b8d4; line-height: 1.8; margin-bottom: 2.5rem; }
+
+  .contact-links { display: flex; flex-direction: column; gap: 2px; }
+  .contact-link {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 1.4rem; background: rgba(255,255,255,0.06);
+    text-decoration: none; color: #e8f4fd; font-size: 0.8rem;
+    border: 1px solid rgba(56,189,248,0.15); border-radius: 6px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .contact-link:hover { background: rgba(56,189,248,0.12); border-color: rgba(56,189,248,0.4); }
+  .contact-link-label { color: #7aa8c4; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.2rem; }
+  .contact-link-arrow { color: var(--blue-sky); font-size: 1rem; }
+
+  .contact-info-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .contact-info-icon {
+    width: 2.5rem; height: 2.5rem;
+    background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.25);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--blue-sky); font-size: 0.9rem; flex-shrink: 0;
+  }
+  .contact-info-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.15em; color: #7aa8c4; margin-bottom: 0.3rem; }
+  .contact-info-value { font-size: 0.82rem; color: #e8f4fd; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    background: #071d4a;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.62rem; color: #4a7a9b; letter-spacing: 0.1em;
+  }
+  .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; color: var(--blue-sky); font-size: 1rem; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ─── RESPONSIVE ─── */
+  @media(max-width:900px){
+    nav{padding:1rem 1.5rem}
+    .nav-links{display:none}
+    section,#hero{padding:4rem 1.5rem}
+    #hero{grid-template-columns:1fr;padding-top:90px}
+    .hero-right{display:none}
+    .skills-grid{grid-template-columns:1fr 1fr}
+    .exp-item{grid-template-columns:1fr;gap:1rem}
+    .formation-grid{grid-template-columns:1fr}
+    .contact-inner{grid-template-columns:1fr;gap:3rem}
+    .projects-grid{grid-template-columns:1fr}
+    footer{flex-direction:column;gap:0.5rem;text-align:center}
+  }
+  @media(max-width:600px){ .skills-grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">HM</div>
+  <ul class="nav-links">
+    <li><a href="#experience">Expérience</a></li>
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#formation">Formation</a></li>
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">
+      <div class="hero-tag-dot"></div>
+      Disponible immédiatement
+    </div>
+    <h1>Hamza<br>Moudane</h1>
+    <span class="h1-sub">Ingénieur QA / Automatisation des Tests</span>
+    <p class="hero-desc">
+      Spécialisé en automatisation des tests fonctionnels &amp; End-to-End, j'ai acquis une solide expérience 
+      sur des systèmes critiques chez EDF et ENGIE. Maîtrise complète du cycle de test : automatisation, CI/CD, gestion des anomalies, Agile.
+    </p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Me contacter</a>
+      <a href="#experience" class="btn-outline">Voir mon parcours</a>
+    </div>
+    <div class="hero-badges">
+      <span class="hero-badge">Selenium</span>
+      <span class="hero-badge">Provar</span>
+      <span class="hero-badge">Java</span>
+      <span class="hero-badge">CI/CD</span>
+      <span class="hero-badge">BDD / Gherkin</span>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="card-label">// Profil en chiffres</div>
+      <div class="stat-grid">
+        <div class="stat">
+          <div class="stat-num">1.5<sup>ans</sup></div>
+          <div class="stat-label">Expérience</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Missions clés</div>
+        </div>
+        <div class="stat-divider"></div><div class="stat-divider"></div>
+        <div class="stat">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Certifications</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">15<sup>+</sup></div>
+          <div class="stat-label">Technologies</div>
+        </div>
+      </div>
+      <div class="logo-strip">
+        <div class="logo-strip-label">// Entreprises clés</div>
+        <div class="logo-strip-logos">
+          <!-- ENGIE logo via Wikimedia -->
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Logo_ENGIE.svg/200px-Logo_ENGIE.svg.png"
+            alt="ENGIE"
+            onerror="this.style.display='none';document.getElementById('engie-txt-hero').style.display='inline'">
+          <span class="logo-txt" id="engie-txt-hero" style="display:none">ENGIE</span>
+
+          <!-- EDF logo via Wikimedia -->
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Logo_EDF.svg/200px-Logo_EDF.svg.png"
+            alt="EDF"
+            onerror="this.style.display='none';document.getElementById('edf-txt-hero').style.display='inline'">
+          <span class="logo-txt" id="edf-txt-hero" style="display:none">EDF</span>
+
+          <span class="logo-txt">ONEE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-num">01 / Expérience</span>
+    <div class="section-line"></div>
+    <h2 class="section-title">Parcours Professionnel</h2>
+  </div>
+
+  <!-- ENGIE -->
+  <div class="exp-item">
+    <div class="exp-meta">
+      <div class="exp-period">01/2025 – 08/2025</div>
+      <div class="exp-logo-box">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Logo_ENGIE.svg/200px-Logo_ENGIE.svg.png"
+          alt="ENGIE"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="exp-logo-txt" style="display:none">ENGIE</span>
+      </div>
+      <div class="exp-location">Paris, France</div>
+    </div>
+    <div class="exp-content">
+      <div class="exp-role">Ingénieur QA – Automatisation &amp; Intégration Continue</div>
+      <p class="exp-desc">Intégré au sein d'une squad dédiée à la digitalisation du processus de génération de contrats. Rôle de lead test, unique référent QA sur un écosystème Salesforce multi-CRM interconnecté via APIs.</p>
+      <ul class="exp-bullets">
+        <li>Tests automatisés E2E sur Salesforce couvrant tous les parcours contractuels (Selenium, Provar, Cypress)</li>
+        <li>Développement d'un outil interne de génération automatique de rapports de tests (OK/KO, logs, stats)</li>
+        <li>Intégration des suites de tests dans les pipelines Jenkins et Azure DevOps</li>
+        <li>Tests d'API avec Postman &amp; Swagger — validation des flux inter-systèmes</li>
+        <li>Accompagnement PO, BA, SM dans l'intégration de la qualité dès la conception</li>
+      </ul>
+      <div class="exp-techs">
+        <span class="exp-tech">Selenium</span><span class="exp-tech">Provar</span><span class="exp-tech">Cypress</span>
+        <span class="exp-tech">Jenkins</span><span class="exp-tech">Azure DevOps</span><span class="exp-tech">GitLab</span>
+        <span class="exp-tech">Java</span><span class="exp-tech">Gherkin</span><span class="exp-tech">Salesforce</span>
+        <span class="exp-tech">Angular</span><span class="exp-tech">PostgreSQL</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDF -->
+  <div class="exp-item">
+    <div class="exp-meta">
+      <div class="exp-period">02/2024 – 08/2024</div>
+      <div class="exp-logo-box">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Logo_EDF.svg/200px-Logo_EDF.svg.png"
+          alt="EDF"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="exp-logo-txt" style="display:none">EDF</span>
+      </div>
+      <div class="exp-location">Bordeaux, France</div>
+    </div>
+    <div class="exp-content">
+      <div class="exp-role">Ingénieur QA – Automatisation des Tests</div>
+      <p class="exp-desc">Application critique de gestion des accès aux centres nucléaires. Fort enjeu de sécurité et de fiabilité — synchronisation avec un service étatique de vérification d'identité.</p>
+      <ul class="exp-bullets">
+        <li>Tests BDD avec Gherkin/Cucumber — alignement technique &amp; métier</li>
+        <li>Tests E2E avec Selenium WebDriver sur les parcours d'enregistrement et d'autorisation d'accès</li>
+        <li>Tests d'API et vérification de conformité des échanges inter-systèmes</li>
+        <li>Intégration CI/CD via Jenkins et GitLab CI — détection rapide des régressions</li>
+        <li>Suivi des anomalies via Jira Xray en environnement Agile Scrum</li>
+      </ul>
+      <div class="exp-techs">
+        <span class="exp-tech">Selenium</span><span class="exp-tech">Cucumber</span><span class="exp-tech">Jira Xray</span>
+        <span class="exp-tech">Jenkins</span><span class="exp-tech">GitLab CI</span><span class="exp-tech">Java</span>
+        <span class="exp-tech">Spring Boot</span><span class="exp-tech">AngularJS</span><span class="exp-tech">PostgreSQL</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ONEE -->
+  <div class="exp-item">
+    <div class="exp-meta">
+      <div class="exp-period">06/2023 – 09/2023</div>
+      <div class="exp-logo-box">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/fr/thumb/7/74/Logo_ONEE.svg/200px-Logo_ONEE.svg.png"
+          alt="ONEE"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="exp-logo-txt" style="display:none">ONEE</span>
+      </div>
+      <div class="exp-location">Casablanca, Maroc</div>
+    </div>
+    <div class="exp-content">
+      <div class="exp-role">Ingénieur QA &amp; Développeur Web Full Stack</div>
+      <p class="exp-desc">Modernisation des systèmes de facturation de l'ONEE. Développement d'une application web de facturation automatisée pour la gestion d'achat d'énergie auprès de producteurs.</p>
+      <ul class="exp-bullets">
+        <li>Modélisation UML et conception fonctionnelle de la solution</li>
+        <li>Génération automatique de factures PDF avec règles métiers dynamiques</li>
+        <li>Mise en place du premier framework d'automatisation de tests de l'équipe</li>
+        <li>Pipeline DevOps avec Docker pour la conteneurisation et la livraison</li>
+      </ul>
+      <div class="exp-techs">
+        <span class="exp-tech">Node.js</span><span class="exp-tech">Express</span>
+        <span class="exp-tech">Docker</span><span class="exp-tech">JavaScript</span>
+        <span class="exp-tech">SQL</span><span class="exp-tech">UML</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDS2I -->
+  <div class="exp-item">
+    <div class="exp-meta">
+      <div class="exp-period">06/2022 – 07/2022</div>
+      <div class="exp-logo-box">
+        <span class="exp-logo-txt">EDS2I</span>
+      </div>
+      <div class="exp-location">Casablanca, Maroc</div>
+    </div>
+    <div class="exp-content">
+      <div class="exp-role">Développeur Web</div>
+      <p class="exp-desc">Conception de sites web sur mesure via CMS, ajout de fonctionnalités personnalisées et résolution de bugs utilisateurs en production.</p>
+      <ul class="exp-bullets">
+        <li>Sites dynamiques via WordPress selon cahier des charges clients</li>
+        <li>Intégration de formulaires, sliders et bases de données</li>
+      </ul>
+      <div class="exp-techs">
+        <span class="exp-tech">WordPress</span><span class="exp-tech">PHP</span>
+        <span class="exp-tech">JavaScript</span><span class="exp-tech">SQL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-num">02 / Compétences</span>
+    <div class="section-line"></div>
+    <h2 class="section-title">Stack Technique</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-cat"><div class="skill-cat-name">🔧 Outils de Test</div><div class="skill-items"><span class="skill-item">Jira / Xray</span><span class="skill-item">Azure DevOps</span><span class="skill-item">Cucumber</span></div></div>
+    <div class="skill-cat"><div class="skill-cat-name">🌐 API</div><div class="skill-items"><span class="skill-item">Postman</span><span class="skill-item">Swagger</span><span class="skill-item">SoapUI</span></div></div>
+    <div class="skill-cat"><div class="skill-cat-name">🤖 Automatisation</div><div class="skill-items"><span class="skill-item">Selenium</span><span class="skill-item">Cypress</span><span class="skill-item">Provar</span><span class="skill-item">Robot Framework</span></div></div>
+    <div class="skill-cat"><div class="skill-cat-name">💾 Base de données</div><div class="skill-items"><span class="skill-item">SQL</span><span class="skill-item">PostgreSQL</span><span class="skill-item">MongoDB</span></div></div>
+    <div class="skill-cat"><div class="skill-cat-name">💻 Langages</div><div class="skill-items"><span class="skill-item">Java</span><span class="skill-item">JavaScript</span><span class="skill-item">TypeScript</span><span class="skill-item">Python</span><span class="skill-item">PHP</span><span class="skill-item">C++</span></div></div>
+    <div class="skill-cat"><div class="skill-cat-name">⚙️ CI/CD &amp; DevOps</div><div class="skill-items"><span class="skill-item">Jenkins</span><span class="skill-item">Docker</span><span class="skill-item">Git / GitHub</span><span class="skill-item">GitLab CI</span><span class="skill-item">Azure DevOps</span></div></div>
+    <div class="skill-cat"><div class="skill-cat-name">📐 Méthodes</div><div class="skill-items"><span class="skill-item">Agile Scrum</span><span class="skill-item">Gherkin / BDD</span><span class="skill-item">UML</span></div></div>
+    <div class="skill-cat"><div class="skill-cat-name">🧰 Frameworks</div><div class="skill-items"><span class="skill-item">Spring Boot</span><span class="skill-item">Angular</span><span class="skill-item">Node.js</span><span class="skill-item">Express</span><span class="skill-item">IntelliJ</span></div></div>
+    <div class="skill-cat"><div class="skill-cat-name">☁️ Autres</div><div class="skill-items"><span class="skill-item">Salesforce</span><span class="skill-item">WordPress</span><span class="skill-item">Linux</span><span class="skill-item">JUnit</span></div></div>
+  </div>
+</section>
+
+<!-- FORMATION -->
+<section id="formation">
+  <div class="section-header">
+    <span class="section-num">03 / Formation</span>
+    <div class="section-line"></div>
+    <h2 class="section-title">Parcours Académique</h2>
+  </div>
+  <div class="formation-grid">
+    <div>
+      <div style="font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--blue-mid);margin-bottom:1rem;font-weight:600;">// Diplômes</div>
+      <div class="formation-item">
+        <div class="formation-year">2021 – 2025</div>
+        <div class="formation-degree">Bac+5 – Ingénieur Informatique</div>
+        <div class="formation-school">Polytech Marseille · Aix-Marseille Université</div>
+      </div>
+      <div class="formation-item">
+        <div class="formation-year">2018 – 2020</div>
+        <div class="formation-degree">CPGE – Classes Prépa Grandes Écoles (MP)</div>
+        <div class="formation-school">Math Sup / Spé</div>
+      </div>
+      <div class="formation-item">
+        <div class="formation-year">2017 – 2018</div>
+        <div class="formation-degree">Bac Science Mathématique B — Mention TB · Major de promo</div>
+        <div class="formation-school">GSB – Groupe Scolaire Berrada, Casablanca</div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--blue-mid);margin-bottom:1rem;font-weight:600;">// Certifications</div>
+      <div class="certif-list">
+        <div class="certif-item"><div class="certif-icon">✦</div><div><div class="certif-name">Provar Automation Essentials &amp; Advanced</div><div class="certif-org">University of Provar · 2025</div></div></div>
+        <div class="certif-item"><div class="certif-icon">✦</div><div><div class="certif-name">Provar Manager Essentials</div><div class="certif-org">University of Provar · 2025</div></div></div>
+        <div class="certif-item"><div class="certif-icon">✦</div><div><div class="certif-name">The Complete JavaScript Course: Beginner to Advanced</div><div class="certif-org">Udemy · 2025</div></div></div>
+        <div class="certif-item"><div class="certif-icon">✦</div><div><div class="certif-name">Mathematical Thinking</div><div class="certif-org">University of Stanford · Coursera · 2025</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETS -->
+<section id="projets">
+  <div class="section-header">
+    <span class="section-num">04 / Projets</span>
+    <div class="section-line"></div>
+    <h2 class="section-title">Projets &amp; Réalisations</h2>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-type">Freelance · Site Vitrine</div>
+      <div class="project-name">Best Sécurité Intervention</div>
+      <p class="project-desc">Développement full stack d'un site vitrine pour une agence de sécurité. Hébergement, formulaire de contact, responsive design complet.</p>
+      <div class="project-stack"><span class="project-tag">HTML/CSS</span><span class="project-tag">JavaScript</span><span class="project-tag">Node.js / Express</span><span class="project-tag">MySQL</span><span class="project-tag">jQuery</span></div>
+    </div>
+    <div class="project-card">
+      <div class="project-type">Projet Académique · Polytech</div>
+      <div class="project-name">Application de Gestion des Absences</div>
+      <p class="project-desc">Application multi-rôles (admin / prof / étudiant) pour le suivi des absences. Déployée via Docker avec base de données MySQL.</p>
+      <div class="project-stack"><span class="project-tag">PHP</span><span class="project-tag">HTML/CSS</span><span class="project-tag">jQuery</span><span class="project-tag">MySQL</span><span class="project-tag">Docker</span><span class="project-tag">UML</span></div>
+    </div>
+    <div class="project-card">
+      <div class="project-type">Projet Académique</div>
+      <div class="project-name">Système de Gestion de Scolarité</div>
+      <p class="project-desc">Application complète de gestion académique avec Docker pour la maintenance et la mise à l'échelle.</p>
+      <div class="project-stack"><span class="project-tag">PHP</span><span class="project-tag">JavaScript</span><span class="project-tag">MySQL</span><span class="project-tag">Docker</span></div>
+    </div>
+    <div class="project-card">
+      <div class="project-type">Projets Techniques</div>
+      <div class="project-name">Compresseur C &amp; Migration MongoDB</div>
+      <p class="project-desc">Implémentation d'un algorithme de compression en C et migration complète de données Sqlite3 vers MongoDB.</p>
+      <div class="project-stack"><span class="project-tag">C</span><span class="project-tag">SQLite3</span><span class="project-tag">MongoDB</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-num">05 / Contact</span>
+    <div class="section-line"></div>
+    <h2 class="section-title">Travaillons Ensemble</h2>
+  </div>
+  <div class="contact-inner">
+    <div>
+      <div class="contact-tagline">
+        Disponible<br><span>immédiatement</span><br>pour un CDI.
+      </div>
+      <p class="contact-sub">Ingénieur QA passionné par la qualité logicielle, je cherche une équipe dynamique pour garantir la fiabilité et la non-régression d'applications critiques.</p>
+      <div class="contact-links">
+        <a href="mailto:Chanhamza@gmail.com" class="contact-link">
+          <div><div class="contact-link-label">Email</div><div>Chanhamza@gmail.com</div></div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://linkedin.com/in/hamza-moudane" target="_blank" class="contact-link">
+          <div><div class="contact-link-label">LinkedIn</div><div>linkedin.com/in/hamza-moudane</div></div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="contact-info-item"><div class="contact-info-icon">📞</div><div><div class="contact-info-label">Téléphone</div><div class="contact-info-value">06 59 87 45 02</div></div></div>
+      <div class="contact-info-item"><div class="contact-info-icon">⚡</div><div><div class="contact-info-label">Disponibilité</div><div class="contact-info-value">Immédiate · CDI</div></div></div>
+      <div class="contact-info-item"><div class="contact-info-icon">✉️</div><div><div class="contact-info-label">Email</div><div class="contact-info-value">Chanhamza@gmail.com</div></div></div>
+      <div class="contact-info-item"><div class="contact-info-icon">🌍</div><div><div class="contact-info-label">Langues</div><div class="contact-info-value">Français bilingue · Anglais avancé · Arabe natal</div></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">HM</div>
+  <div>Hamza Moudane · Ingénieur QA / Automatisation des Tests</div>
+  <div>© 2026</div>
+</footer>
+
+</body>
+</html>
