@@ -352,21 +352,78 @@
   /* ─── ANIMATIONS ─── */
   @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
 
-  /* ─── RESPONSIVE ─── */
-  @media(max-width:900px){
-    nav{padding:1rem 1.5rem}
-    .nav-links{display:none}
-    section,#hero{padding:4rem 1.5rem}
-    #hero{grid-template-columns:1fr;padding-top:90px}
-    .hero-right{display:none}
-    .skills-grid{grid-template-columns:1fr 1fr}
-    .exp-item{grid-template-columns:1fr;gap:1rem}
-    .formation-grid{grid-template-columns:1fr}
-    .contact-inner{grid-template-columns:1fr;gap:3rem}
-    .projects-grid{grid-template-columns:1fr}
-    footer{flex-direction:column;gap:0.5rem;text-align:center}
+  /* ─── HAMBURGER ─── */
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; background: none; border: none; padding: 4px;
   }
-  @media(max-width:600px){ .skills-grid{grid-template-columns:1fr} }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--blue-deep); border-radius: 2px; transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none; position: fixed; top: 58px; left: 0; right: 0;
+    background: var(--white); z-index: 99;
+    flex-direction: column; padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-soft);
+    box-shadow: 0 8px 24px rgba(15,45,107,0.1);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: var(--text); text-decoration: none; font-family: 'Syne', sans-serif;
+    font-size: 1rem; font-weight: 700; padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border-soft); letter-spacing: 0.04em;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { color: var(--blue-mid); }
+
+  /* ─── TABLET ─── */
+  @media(max-width:900px){
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    section { padding: 4rem 1.5rem; }
+    #hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; min-height: auto; }
+    .hero-right { display: none; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 1rem; }
+    .formation-grid { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+  }
+
+  /* ─── MOBILE ─── */
+  @media(max-width:600px){
+    nav { padding: 0.8rem 1.2rem; }
+    section { padding: 3rem 1.2rem; }
+    #hero { padding: 5rem 1.2rem 2.5rem; }
+    h1 { font-size: 2.6rem; }
+    .h1-sub { font-size: 0.9rem; }
+    .hero-desc { font-size: 0.82rem; max-width: 100%; }
+    .hero-ctas { flex-direction: column; }
+    .btn-primary, .btn-outline { width: 100%; text-align: center; padding: 1rem; }
+    .hero-badges { gap: 0.4rem; }
+    .hero-badge { font-size: 0.58rem; }
+    .section-title { font-size: 1.6rem; }
+    .section-header { flex-wrap: wrap; gap: 0.8rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .skill-cat { padding: 1.2rem; }
+    .exp-item { padding: 2rem 0; }
+    .exp-role { font-size: 0.9rem; }
+    .exp-desc { font-size: 0.74rem; }
+    .exp-bullets li { font-size: 0.7rem; }
+    .formation-item { padding: 1.2rem; }
+    .certif-item { padding: 0.8rem; }
+    .project-card { padding: 1.5rem; }
+    .contact-tagline { font-size: 1.8rem; }
+    .contact-link { padding: 0.9rem 1rem; font-size: 0.72rem; }
+    footer { padding: 1.2rem; font-size: 0.58rem; }
+  }
 </style>
 </head>
 <body>
@@ -381,7 +438,32 @@
     <li><a href="#projets">Projets</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#experience" onclick="closeMenu()">Expérience</a>
+  <a href="#skills" onclick="closeMenu()">Compétences</a>
+  <a href="#formation" onclick="closeMenu()">Formation</a>
+  <a href="#projets" onclick="closeMenu()">Projets</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
+
+<script>
+  const btn = document.getElementById('hamburger');
+  const menu = document.getElementById('mobileMenu');
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+  });
+  function closeMenu() {
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+  }
+</script>
 
 <!-- HERO -->
 <section id="hero">
@@ -687,8 +769,8 @@
       </div>
       <p class="contact-sub">Ingénieur QA passionné par la qualité logicielle, je cherche une équipe dynamique pour garantir la fiabilité et la non-régression d'applications critiques.</p>
       <div class="contact-links">
-        <a href="mailto:Chanhamza@gmail.com" class="contact-link">
-          <div><div class="contact-link-label">Email</div><div>Chanhamza@gmail.com</div></div>
+        <a href="/cdn-cgi/l/email-protection#0a49626b64626b67706b4a6d676b636624696567" class="contact-link">
+          <div><div class="contact-link-label">Email</div><div><span class="__cf_email__" data-cfemail="7e3d161f10161f13041f3e19131f1712501d1113">[email&#160;protected]</span></div></div>
           <span class="contact-link-arrow">→</span>
         </a>
         <a href="https://linkedin.com/in/hamza-moudane" target="_blank" class="contact-link">
@@ -700,17 +782,5 @@
     <div>
       <div class="contact-info-item"><div class="contact-info-icon">📞</div><div><div class="contact-info-label">Téléphone</div><div class="contact-info-value">06 59 87 45 02</div></div></div>
       <div class="contact-info-item"><div class="contact-info-icon">⚡</div><div><div class="contact-info-label">Disponibilité</div><div class="contact-info-value">Immédiate · CDI</div></div></div>
-      <div class="contact-info-item"><div class="contact-info-icon">✉️</div><div><div class="contact-info-label">Email</div><div class="contact-info-value">Chanhamza@gmail.com</div></div></div>
-      <div class="contact-info-item"><div class="contact-info-icon">🌍</div><div><div class="contact-info-label">Langues</div><div class="contact-info-value">Français bilingue · Anglais avancé · Arabe natal</div></div></div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-logo">HM</div>
-  <div>Hamza Moudane · Ingénieur QA / Automatisation des Tests</div>
-  <div>© 2026</div>
-</footer>
-
-</body>
-</html>
+      <div class="contact-info-item"><div class="contact-info-icon">✉️</div><div><div class="contact-info-label">Email</div><div class="contact-info-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6d2e050c03050c00170c2d0a000c0401430e0200">[email&#160;protected]</a></div></div></div>
+      <div class="contact-info-item"><div class="contact-info-icon">🌍</div><div><div class="contact-info-label">Langues</div><div class="contact-info-value">Français 
