@@ -365,7 +365,7 @@
     display: flex; align-items: center; justify-content: center;
     color: var(--blue-sky); font-size: 0.9rem; flex-shrink: 0;
   }
-  .contact-info-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.15em; color: #7aa8c4; margin-bottom: 0.3rem; }
+  .contact-info-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: #7aa8c4; margin-bottom: 0.3rem; white-space: nowrap; overflow: visible; }
   .contact-info-value { font-size: 0.82rem; color: #e8f4fd; }
 
   /* ─── FOOTER ─── */
@@ -545,9 +545,9 @@
       <div class="logo-strip">
         <div class="logo-strip-label">// Entreprises clés</div>
         <div class="logo-strip-logos">
-          <div class="logo-box dark"><img src="logo-engie.png" alt="ENGIE"></div>
-          <div class="logo-box"><img src="logo-edf.png" alt="EDF"></div>
-          <div class="logo-box"><img src="logo-onee.png" alt="ONEE"></div>
+          <span class="logo-txt">ENGIE</span>
+          <span class="logo-txt">EDF</span>
+          <span class="logo-txt">ONEE</span>
         </div>
       </div>
     </div>
@@ -788,4 +788,28 @@
       <div class="contact-info-item"><div class="contact-info-icon">📞</div><div><div class="contact-info-label">Téléphone</div><div class="contact-info-value">06 59 87 45 02</div></div></div>
       <div class="contact-info-item"><div class="contact-info-icon">⚡</div><div><div class="contact-info-label">Disponibilité</div><div class="contact-info-value">Immédiate · CDI</div></div></div>
       <div class="contact-info-item"><div class="contact-info-icon">✉️</div><div><div class="contact-info-label">Email</div><div class="contact-info-value">Chanhamza&#64;gmail&#46;com</div></div></div>
-      <div class="contact-info-item"><div class="contact-info-icon">🌍</div><div><div class="contact-info-label">Langu
+      <div class="contact-info-item"><div class="contact-info-icon">🌍</div><div><div class="contact-info-label">Langues</div><div class="contact-info-value">Français · Anglais</div></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">HM</div>
+  <div>Hamza Moudane · Ingénieur QA / Automatisation des Tests</div>
+  <div>© 2026</div>
+</footer>
+<script>
+  const btn = document.getElementById('hamburger');
+  const menu = document.getElementById('mobileMenu');
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+  });
+  function closeMenu() {
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+  }
+</script>
+
+</body>
+</html>
