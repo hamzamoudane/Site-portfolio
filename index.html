@@ -196,9 +196,15 @@
 
   .logo-strip { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-soft); }
   .logo-strip-label { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; }
-  .logo-strip-logos { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
-  .logo-strip-logos img { height: 30px; width: auto; max-width: 90px; object-fit: contain; transition: filter 0.2s; }
-  .logo-strip-logos .engie-logo { background: #0a1628; border-radius: 4px; padding: 3px 6px; height: 30px; }
+  .logo-strip-logos { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .logo-strip-logos .logo-box {
+    background: var(--white); border: 1.5px solid var(--border);
+    border-radius: 6px; padding: 6px 10px;
+    display: flex; align-items: center; justify-content: center;
+    width: 80px; height: 40px;
+  }
+  .logo-strip-logos .logo-box img { width: 100%; height: 100%; object-fit: contain; }
+  .logo-strip-logos .logo-box.dark { background: #0a1628; border-color: #0a1628; }
   .logo-txt { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.85rem; color: var(--blue-deep); letter-spacing: 0.06em; }
 
   /* ─── SECTIONS ─── */
@@ -539,9 +545,9 @@
       <div class="logo-strip">
         <div class="logo-strip-label">// Entreprises clés</div>
         <div class="logo-strip-logos">
-          <img src="logo-engie.png" alt="ENGIE" class="engie-logo">
-          <img src="logo-edf.png" alt="EDF">
-          <img src="logo-onee.png" alt="ONEE">
+          <div class="logo-box dark"><img src="logo-engie.png" alt="ENGIE"></div>
+          <div class="logo-box"><img src="logo-edf.png" alt="EDF"></div>
+          <div class="logo-box"><img src="logo-onee.png" alt="ONEE"></div>
         </div>
       </div>
     </div>
