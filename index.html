@@ -225,13 +225,15 @@
 
   .exp-logo-box {
     background: var(--white); border: 1.5px solid var(--border);
-    border-radius: 8px; padding: 0.5rem;
+    border-radius: 8px;
     display: flex; align-items: center; justify-content: center;
-    width: 130px; height: 60px;
+    width: 130px; height: 65px;
     box-shadow: 0 2px 8px rgba(15,45,107,0.08);
-    overflow: hidden;
+    overflow: hidden; padding: 0;
   }
-  .exp-logo-box img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .exp-logo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .exp-logo-box.dark-bg { background: #0a1628; }
+  .exp-logo-box.contain img { object-fit: contain; padding: 8px; }
   .exp-logo-txt { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; color: var(--blue-deep); }
   .exp-location { font-size: 0.62rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
 
@@ -558,7 +560,7 @@
   <div class="exp-item">
     <div class="exp-meta">
       <div class="exp-period">01/2025 – 08/2025</div>
-      <div class="exp-logo-box" style="background:#0a1628;">
+      <div class="exp-logo-box dark-bg">
         <img src="logo-engie.png" alt="ENGIE">
       </div>
       <div class="exp-location">Paris, France</div>
@@ -586,7 +588,7 @@
   <div class="exp-item">
     <div class="exp-meta">
       <div class="exp-period">02/2024 – 08/2024</div>
-      <div class="exp-logo-box">
+      <div class="exp-logo-box contain">
         <img src="logo-edf.png" alt="EDF">
       </div>
       <div class="exp-location">Bordeaux, France</div>
@@ -613,7 +615,7 @@
   <div class="exp-item">
     <div class="exp-meta">
       <div class="exp-period">06/2023 – 09/2023</div>
-      <div class="exp-logo-box">
+      <div class="exp-logo-box contain">
         <img src="logo-onee.png" alt="ONEE">
       </div>
       <div class="exp-location">Casablanca, Maroc</div>
@@ -639,7 +641,7 @@
   <div class="exp-item">
     <div class="exp-meta">
       <div class="exp-period">06/2022 – 07/2022</div>
-      <div class="exp-logo-box">
+      <div class="exp-logo-box contain">
         <img src="logo-eds2i.png" alt="EDS2I">
       </div>
       <div class="exp-location">Casablanca, Maroc</div>
