@@ -3,7 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hamza Moudane – QA Engineer</title>
+<title>Hamza Moudane – Ingénieur QA & Automatisation des Tests</title>
+
+<!-- SEO -->
+<meta name="description" content="Hamza Moudane, Ingénieur QA spécialisé en automatisation des tests fonctionnels et End-to-End. Expériences chez EDF et ENGIE. Disponible immédiatement pour un CDI.">
+<meta name="keywords" content="Hamza Moudane, Ingénieur QA, Automatisation des tests, Selenium, Provar, Cypress, Jenkins, Azure DevOps, EDF, ENGIE, Gherkin, BDD, Java, CI/CD">
+<meta name="author" content="Hamza Moudane">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://hamzamoudane.info">
+
+<!-- Open Graph (aperçu sur LinkedIn, WhatsApp...) -->
+<meta property="og:title" content="Hamza Moudane – Ingénieur QA & Automatisation des Tests">
+<meta property="og:description" content="Ingénieur QA spécialisé en automatisation des tests. Expériences chez EDF et ENGIE. Disponible immédiatement.">
+<meta property="og:url" content="https://hamzamoudane.info">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hamza Moudane – Ingénieur QA">
+<meta name="twitter:description" content="Ingénieur QA spécialisé en automatisation des tests. Disponible immédiatement.">
+
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -516,21 +536,9 @@
       <div class="logo-strip">
         <div class="logo-strip-label">// Entreprises clés</div>
         <div class="logo-strip-logos">
-          <!-- ENGIE logo via Wikimedia -->
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Logo_ENGIE.svg/200px-Logo_ENGIE.svg.png"
-            alt="ENGIE"
-            onerror="this.style.display='none';document.getElementById('engie-txt-hero').style.display='inline'">
-          <span class="logo-txt" id="engie-txt-hero" style="display:none">ENGIE</span>
-
-          <!-- EDF logo via Wikimedia -->
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Logo_EDF.svg/200px-Logo_EDF.svg.png"
-            alt="EDF"
-            onerror="this.style.display='none';document.getElementById('edf-txt-hero').style.display='inline'">
-          <span class="logo-txt" id="edf-txt-hero" style="display:none">EDF</span>
-
-          <span class="logo-txt">ONEE</span>
+          <img src="logo-engie.png" alt="ENGIE" style="background:#000;padding:3px;border-radius:3px;">
+          <img src="logo-edf.png" alt="EDF">
+          <img src="logo-onee.png" alt="ONEE">
         </div>
       </div>
     </div>
@@ -550,11 +558,7 @@
     <div class="exp-meta">
       <div class="exp-period">01/2025 – 08/2025</div>
       <div class="exp-logo-box">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Logo_ENGIE.svg/200px-Logo_ENGIE.svg.png"
-          alt="ENGIE"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
-        <span class="exp-logo-txt" style="display:none">ENGIE</span>
+        <img src="logo-engie.png" alt="ENGIE" style="background:#000;padding:4px;border-radius:3px;">
       </div>
       <div class="exp-location">Paris, France</div>
     </div>
@@ -582,11 +586,7 @@
     <div class="exp-meta">
       <div class="exp-period">02/2024 – 08/2024</div>
       <div class="exp-logo-box">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Logo_EDF.svg/200px-Logo_EDF.svg.png"
-          alt="EDF"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
-        <span class="exp-logo-txt" style="display:none">EDF</span>
+        <img src="logo-edf.png" alt="EDF">
       </div>
       <div class="exp-location">Bordeaux, France</div>
     </div>
@@ -613,11 +613,7 @@
     <div class="exp-meta">
       <div class="exp-period">06/2023 – 09/2023</div>
       <div class="exp-logo-box">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/fr/thumb/7/74/Logo_ONEE.svg/200px-Logo_ONEE.svg.png"
-          alt="ONEE"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
-        <span class="exp-logo-txt" style="display:none">ONEE</span>
+        <img src="logo-onee.png" alt="ONEE">
       </div>
       <div class="exp-location">Casablanca, Maroc</div>
     </div>
@@ -643,7 +639,7 @@
     <div class="exp-meta">
       <div class="exp-period">06/2022 – 07/2022</div>
       <div class="exp-logo-box">
-        <span class="exp-logo-txt">EDS2I</span>
+        <img src="logo-eds2i.png" alt="EDS2I">
       </div>
       <div class="exp-location">Casablanca, Maroc</div>
     </div>
@@ -693,6 +689,9 @@
     <div>
       <div style="font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--blue-mid);margin-bottom:1rem;font-weight:600;">// Diplômes</div>
       <div class="formation-item">
+        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.8rem;">
+          <img src="logo-polytech.png" alt="Polytech Marseille" style="height:36px;width:auto;object-fit:contain;">
+        </div>
         <div class="formation-year">2021 – 2025</div>
         <div class="formation-degree">Bac+5 – Ingénieur Informatique</div>
         <div class="formation-school">Polytech Marseille · Aix-Marseille Université</div>
@@ -769,7 +768,7 @@
       </div>
       <p class="contact-sub">Ingénieur QA passionné par la qualité logicielle, je cherche une équipe dynamique pour garantir la fiabilité et la non-régression d'applications critiques.</p>
       <div class="contact-links">
-        <a href="mailto:Chanhamza&#64;gmail&#46;com" class="contact-link">
+        <a href="/cdn-cgi/l/email-protection#bffcd7ded1d7ded2c5de999c898b84d8d2ded6d3999c8b8984dcd0d2" class="contact-link">
           <div><div class="contact-link-label">Email</div><div>Chanhamza&#64;gmail&#46;com</div></div>
           <span class="contact-link-arrow">→</span>
         </a>
@@ -783,4 +782,4 @@
       <div class="contact-info-item"><div class="contact-info-icon">📞</div><div><div class="contact-info-label">Téléphone</div><div class="contact-info-value">06 59 87 45 02</div></div></div>
       <div class="contact-info-item"><div class="contact-info-icon">⚡</div><div><div class="contact-info-label">Disponibilité</div><div class="contact-info-value">Immédiate · CDI</div></div></div>
       <div class="contact-info-item"><div class="contact-info-icon">✉️</div><div><div class="contact-info-label">Email</div><div class="contact-info-value">Chanhamza&#64;gmail&#46;com</div></div></div>
-      <div class="contact-info-item"><div class="contact-info-icon">🌍</div><div><div class="contact-info-label">Langues</div><div class="contact-info-value">Français 
+      <div class="contact-info-item"><div class="contact-info-icon">🌍</div><div><div class="contact-info-label">Langu
